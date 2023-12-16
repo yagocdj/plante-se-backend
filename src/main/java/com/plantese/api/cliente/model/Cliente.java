@@ -1,4 +1,4 @@
-package com.plantese.api.models;
+package com.plantese.api.cliente.model;
 
 import jakarta.persistence.*;
 
