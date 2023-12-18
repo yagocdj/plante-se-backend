@@ -33,5 +33,11 @@ public class ClienteService {
         if (clientePesquisado != null) {
             return new ClienteListagemDTO(clientePesquisado);
         }
+        return null;
+    }
+
+    @Transactional
+    public void apagar(Long id) {
+        this.clienteRepository.deleteById(id);
     }
 }
