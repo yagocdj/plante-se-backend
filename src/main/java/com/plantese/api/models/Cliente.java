@@ -16,18 +16,19 @@ public class Cliente {
     private String endereco;
     private String telefone;
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY,
-        cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     private List<Pedido> pedidos;
     private String senha;
 
-    public Cliente() { }
+    public Cliente() {
+    }
 
     public Cliente(
-        String nome,
-        String cpf,
-        String email,
-        String endereco,
-        String telefone
+            String nome,
+            String cpf,
+            String email,
+            String endereco,
+            String telefone
     ) {
         this.nome = nome;
         this.cpf = cpf;
