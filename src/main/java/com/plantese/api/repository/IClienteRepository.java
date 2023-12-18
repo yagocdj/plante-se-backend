@@ -1,10 +1,7 @@
-package com.plantese.api.cliente.repository;
+package com.plantese.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.plantese.api.cliente.model.Cliente;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
+import com.plantese.api.models.Cliente;
 
 //@Repository
 public interface IClienteRepository extends JpaRepository<Cliente, Long> {

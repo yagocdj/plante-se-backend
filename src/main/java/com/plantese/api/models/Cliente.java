@@ -1,6 +1,8 @@
-package com.plantese.api.cliente.model;
+package com.plantese.api.models;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cliente")
@@ -13,6 +15,9 @@ public class Cliente {
     private String email;
     private String endereco;
     private String telefone;
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY,
+        cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    private List<Pedido> pedidos;
     private String senha;
 
     public Cliente() { }

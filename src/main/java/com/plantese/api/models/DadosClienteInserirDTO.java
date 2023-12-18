@@ -1,4 +1,4 @@
-package com.plantese.api.cliente.model;
+package com.plantese.api.models;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

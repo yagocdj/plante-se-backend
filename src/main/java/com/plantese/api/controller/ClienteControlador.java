@@ -1,9 +1,9 @@
-package com.plantese.api.cliente.controller;
+package com.plantese.api.controller;
 
-import com.plantese.api.cliente.model.Cliente;
-import com.plantese.api.cliente.model.ClienteListagemDTO;
-import com.plantese.api.cliente.model.DadosClienteInserirDTO;
-import com.plantese.api.cliente.service.ClienteService;
+import com.plantese.api.models.Cliente;
+import com.plantese.api.models.ClienteListagemDTO;
+import com.plantese.api.models.DadosClienteInserirDTO;
+import com.plantese.api.service.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

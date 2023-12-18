@@ -1,4 +1,4 @@
-package com.plantese.api.cliente.model;
+package com.plantese.api.models;
 
 public record ClienteListagemDTO(
     Long id,

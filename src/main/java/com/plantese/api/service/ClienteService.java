@@ -1,8 +1,8 @@
-package com.plantese.api.cliente.service;
+package com.plantese.api.service;
 
-import com.plantese.api.cliente.model.Cliente;
-import com.plantese.api.cliente.model.ClienteListagemDTO;
-import com.plantese.api.cliente.repository.IClienteRepository;
+import com.plantese.api.models.Cliente;
+import com.plantese.api.models.ClienteListagemDTO;
+import com.plantese.api.repository.IClienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
