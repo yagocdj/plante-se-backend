@@ -56,7 +56,8 @@ public class ClienteController {
                 cliente.cpf(),
                 cliente.email(),
                 cliente.endereco(),
-                cliente.telefone()
+                cliente.telefone(),
+                cliente.senha()
         );
         return this.clienteService.inserirOuAtualizar(clienteASerInserido);
     }

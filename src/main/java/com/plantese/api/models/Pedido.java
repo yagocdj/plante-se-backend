@@ -10,10 +10,10 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY,
+    @ManyToOne(fetch = FetchType.EAGER,
         cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Cliente cliente;
-    @OneToMany(fetch = FetchType.LAZY,
+    @OneToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "fk_id_pedido")
     private List<Produto> produtos;

@@ -29,13 +29,15 @@ public class Cliente {
             String cpf,
             String email,
             String endereco,
-            String telefone
+            String telefone,
+            String senha
     ) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.endereco = endereco;
         this.telefone = telefone;
+        this.senha = senha;
     }
 
     public Long getId() {
