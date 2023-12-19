@@ -21,9 +21,21 @@ public class ClienteController {
     }
 
     @GetMapping
-    public List<ClienteListagemDTO> listar(@RequestParam(value = "email", required = false) String email) {
-        if (email != null && !email.isBlank()) {
+    public List<ClienteListagemDTO> listar(@RequestParam(value = "email", required = false) String email,
+        @RequestParam(value = "cpf", required = false) String cpf) {
+
+        boolean temEmail = email != null && !email.isBlank();
+        boolean temCpf = (cpf != null && !cpf.isBlank()) && cpf.length() == 11;
+
+        if (temEmail) {
             var clientePesquisado = this.clienteService.getClientePorEmail(email);
+            if (clientePesquisado != null) {
+                return Collections.singletonList(clientePesquisado);
+            }
+            return null;
+        }
+        if (temCpf) {
+            var clientePesquisado = this.clienteService.getClienteByCpf(cpf);
             if (clientePesquisado != null) {
                 return Collections.singletonList(clientePesquisado);
             }

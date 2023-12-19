@@ -25,6 +25,7 @@ public class ClienteService {
         return this.clienteRepository.findById(id).orElse(null);
     }
 
+
     @Transactional
     public Cliente inserirOuAtualizar(Cliente cliente) {
         return this.clienteRepository.save(cliente);
@@ -32,6 +33,14 @@ public class ClienteService {
 
     public ClienteListagemDTO getClientePorEmail(String email) {
         var clientePesquisado = this.clienteRepository.findClienteByEmail(email);
+        if (clientePesquisado != null) {
+            return new ClienteListagemDTO(clientePesquisado);
+        }
+        return null;
+    }
+
+    public ClienteListagemDTO getClienteByCpf(String cpf) {
+        var clientePesquisado = this.clienteRepository.findClienteByCpf(cpf);
         if (clientePesquisado != null) {
             return new ClienteListagemDTO(clientePesquisado);
         }

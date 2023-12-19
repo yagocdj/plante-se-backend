@@ -12,4 +12,11 @@ public interface IClienteRepository extends JpaRepository<Cliente, Long> {
      * @return o cliente cujo email é igual ao passado como argumento deste método.
      */
     public Cliente findClienteByEmail(String email);
+
+    /**
+     * Método para localizar um cliente a partir do seu CPF.
+     * @param cpf o CPF do cliente a ser localizado
+     * @return o cliente cujo CPF é igual ao passado como argumento.
+     */
+    public Cliente findClienteByCpf(String cpf);
 }
