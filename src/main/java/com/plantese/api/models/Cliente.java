@@ -11,6 +11,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @Column(length = 11)
     private String cpf;
     private String email;
     private String endereco;

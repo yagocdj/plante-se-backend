@@ -4,7 +4,6 @@ import com.plantese.api.models.Cliente;
 import com.plantese.api.models.ClienteListagemDTO;
 import com.plantese.api.repository.IClienteRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +11,11 @@ import java.util.List;
 @Service
 public class ClienteService {
 
-    @Autowired
-    private IClienteRepository clienteRepository;
+    private final IClienteRepository clienteRepository;
+
+    public ClienteService(IClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
 
     public List<ClienteListagemDTO> listar() {
         return this.clienteRepository.findAll().stream().map(ClienteListagemDTO::new).toList();

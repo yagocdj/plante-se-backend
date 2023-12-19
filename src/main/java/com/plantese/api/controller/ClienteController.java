@@ -5,7 +5,6 @@ import com.plantese.api.models.ClienteListagemDTO;
 import com.plantese.api.models.DadosClienteInserirDTO;
 import com.plantese.api.service.ClienteService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -13,10 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/clientes")
-public class ClienteControlador {
+public class ClienteController {
 
-    @Autowired
-    private ClienteService clienteService;
+    private final ClienteService clienteService;
+
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
 
     @GetMapping
     public List<ClienteListagemDTO> listar(@RequestParam(value = "email", required = false) String email) {
@@ -38,11 +40,11 @@ public class ClienteControlador {
     @PostMapping
     public Cliente inserir(@RequestBody @Valid DadosClienteInserirDTO cliente) {
         var clienteASerInserido = new Cliente(
-            cliente.nome(),
-            cliente.cpf(),
-            cliente.email(),
-            cliente.endereco(),
-            cliente.telefone()
+                cliente.nome(),
+                cliente.cpf(),
+                cliente.email(),
+                cliente.endereco(),
+                cliente.telefone()
         );
         return this.clienteService.inserirOuAtualizar(clienteASerInserido);
     }

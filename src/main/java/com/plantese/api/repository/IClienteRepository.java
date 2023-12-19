@@ -2,8 +2,9 @@ package com.plantese.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.plantese.api.models.Cliente;
+import org.springframework.stereotype.Repository;
 
-//@Repository
+@Repository
 public interface IClienteRepository extends JpaRepository<Cliente, Long> {
     /**
      * Método para localizar um cliente a partir do seu endereço de email.
