@@ -11,20 +11,25 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER,
-        cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Cliente cliente;
-    @OneToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "fk_id_pedido")
+    private Cliente cliente;
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "tb_pedido_produto",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
     private List<Produto> produtos;
     private Double valorTotal;
 
-    public Pedido() { }
+    public Pedido() {
+    }
 
     public Pedido(
-        Cliente cliente,
-        List<Produto> produtos,
-        Double valorTotal
+            Cliente cliente,
+            List<Produto> produtos,
+            Double valorTotal
     ) {
         this.cliente = cliente;
         this.produtos = produtos;
