@@ -11,7 +11,9 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PedidoService {
@@ -41,8 +43,12 @@ public class PedidoService {
             pedido.setCliente(clientePersistente);
         }
         if (!pedido.getProdutos().isEmpty()) {
-            List<Produto> produtosPersistidos = this.produtoRepository.findAll();
-            pedido.setProdutos(produtosPersistidos);
+            List<Produto> produtosDoPedido = new ArrayList<>();
+            for (Produto prod : pedido.getProdutos()) {
+                Optional<Produto> produtoPersistido = this.produtoRepository.findById(prod.getId());
+                produtoPersistido.ifPresent(produtosDoPedido::add);
+            }
+            pedido.setProdutos(produtosDoPedido);
         }
         return this.pedidoRepository.save(pedido);
     }
