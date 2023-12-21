@@ -7,7 +7,6 @@ import com.plantese.api.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,17 +21,24 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public List<ProdutoListagemDTO> listar(@RequestParam(value = "nome", required = false) String nome) {
+    public List<ProdutoListagemDTO> listar(
+            @RequestParam(value = "nome", required = false) String nome,
+            @RequestParam(value = "categoria", required = false) String categoria) {
 
         boolean temNome = nome != null && !nome.isBlank();
+        boolean temCategoria = categoria != null && !categoria.isBlank();
 
         if (temNome) {
-            var produtoPesquisado = this.produtoService.getProdutoPorNome(nome);
+            var produtoPesquisado = this.produtoService.getProdutoByNome(nome);
             if (produtoPesquisado != null) {
                 return Collections.singletonList(produtoPesquisado);
             }
             return null;
         }
+        if (temCategoria) {
+            return this.produtoService.getProdutosByCategoria(categoria);
+        }
+
         return this.produtoService.listar();
     }
 

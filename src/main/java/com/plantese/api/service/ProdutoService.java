@@ -35,15 +35,22 @@ public class ProdutoService {
         this.produtoRepository.deleteById(id);
     }
 
-    public ProdutoListagemDTO getProdutoPorNome(String nome) {
+    public ProdutoListagemDTO getProdutoByNome(String nome) {
         var produtoPesquisado = this.produtoRepository.findProdutoByNome(nome);
-        return new ProdutoListagemDTO(
-                produtoPesquisado.getId(),
-                produtoPesquisado.getNome(),
-                produtoPesquisado.getPreco(),
-                produtoPesquisado.getCategoria(),
-                produtoPesquisado.getQuantidade(),
-                produtoPesquisado.getUrlDaImagem()
-        );
+        if (produtoPesquisado != null) {
+            return new ProdutoListagemDTO(
+                    produtoPesquisado.getId(),
+                    produtoPesquisado.getNome(),
+                    produtoPesquisado.getPreco(),
+                    produtoPesquisado.getCategoria(),
+                    produtoPesquisado.getQuantidade(),
+                    produtoPesquisado.getUrlDaImagem()
+            );
+        }
+        return null;
+    }
+
+    public List<ProdutoListagemDTO> getProdutosByCategoria(String categoria) {
+        return this.produtoRepository.findProdutosByCategoria(categoria).stream().map(ProdutoListagemDTO::new).toList();
     }
 }
