@@ -1,6 +1,7 @@
 package com.plantese.api.controller;
 
 import com.plantese.api.models.Cliente;
+import com.plantese.api.models.ClienteAutenticaDTO;
 import com.plantese.api.models.ClienteListagemDTO;
 import com.plantese.api.models.DadosClienteInserirDTO;
 import com.plantese.api.service.ClienteService;
@@ -49,6 +50,11 @@ public class ClienteController {
         return this.clienteService.getClienteById(idCliente);
     }
 
+    @GetMapping("/email/{email}")
+    public ClienteListagemDTO getClientePorEmail(@PathVariable("email") String email) {
+        return this.clienteService.getClientePorEmail(email);
+    }
+
     @PostMapping
     public Cliente inserir(@RequestBody @Valid DadosClienteInserirDTO cliente) {
         var clienteASerInserido = new Cliente(
@@ -60,6 +66,11 @@ public class ClienteController {
                 cliente.senha()
         );
         return this.clienteService.inserirOuAtualizar(clienteASerInserido);
+    }
+
+    @PostMapping("/auth")
+    public boolean auth(@RequestBody @Valid ClienteAutenticaDTO cliente) {
+        return this.clienteService.autenticar(cliente.email(), cliente.senha());
     }
 
     @PutMapping("/{id}")

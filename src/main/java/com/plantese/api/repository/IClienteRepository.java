@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.plantese.api.models.Cliente;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface IClienteRepository extends JpaRepository<Cliente, Long> {
     /**
@@ -11,7 +13,7 @@ public interface IClienteRepository extends JpaRepository<Cliente, Long> {
      * @param email o email do cliente a ser localizado.
      * @return o cliente cujo email é igual ao passado como argumento deste método.
      */
-    public Cliente findClienteByEmail(String email);
+    public Optional<Cliente> findByEmail(String email);
 
     /**
      * Método para localizar um cliente a partir do seu CPF.

@@ -34,4 +34,16 @@ public class ProdutoService {
     public void apagar(Long id) {
         this.produtoRepository.deleteById(id);
     }
+
+    public ProdutoListagemDTO getProdutoPorNome(String nome) {
+        var produtoPesquisado = this.produtoRepository.findProdutoByNome(nome);
+        return new ProdutoListagemDTO(
+                produtoPesquisado.getId(),
+                produtoPesquisado.getNome(),
+                produtoPesquisado.getPreco(),
+                produtoPesquisado.getCategoria(),
+                produtoPesquisado.getQuantidade(),
+                produtoPesquisado.getUrlDaImagem()
+        );
+    }
 }
