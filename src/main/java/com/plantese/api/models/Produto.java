@@ -12,21 +12,22 @@ public class Produto {
     private Double preco;
     private String categoria;
     private Integer quantidade;
-    private String imageUrl;
+    private String urlDaImagem;
 
-    public Produto() { }
+    public Produto() {
+    }
 
     public Produto(
-        String nome,
-        Double preco,
-        String categoria,
-        String imageUrl
+            String nome,
+            Double preco,
+            String categoria,
+            String urlDaImagem
     ) {
         this.nome = nome;
         this.preco = preco;
         this.categoria = categoria;
         this.quantidade = 0;
-        this.imageUrl = imageUrl;
+        this.urlDaImagem = urlDaImagem;
     }
 
     public Long getId() {
@@ -69,11 +70,11 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getUrlDaImagem() {
+        return urlDaImagem;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setUrlDaImagem(String imageUrl) {
+        this.urlDaImagem = imageUrl;
     }
 }
