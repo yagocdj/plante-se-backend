@@ -74,8 +74,8 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public Cliente atualizar(@RequestBody Cliente cliente) {
-        return this.clienteService.inserirOuAtualizar(cliente);
+    public Cliente atualizar(@RequestBody @Valid DadosClienteInserirDTO cliente, @PathVariable("id") Long id) {
+        return this.clienteService.atualizar(cliente, id);
     }
 
     @DeleteMapping("/{id}")

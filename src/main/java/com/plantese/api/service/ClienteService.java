@@ -2,6 +2,7 @@ package com.plantese.api.service;
 
 import com.plantese.api.models.Cliente;
 import com.plantese.api.models.ClienteListagemDTO;
+import com.plantese.api.models.DadosClienteInserirDTO;
 import com.plantese.api.repository.IClienteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,20 @@ public class ClienteService {
     @Transactional
     public Cliente inserirOuAtualizar(Cliente cliente) {
         return this.clienteRepository.save(cliente);
+    }
+
+    @Transactional
+    public Cliente atualizar(DadosClienteInserirDTO cliente, Long id) {
+        return this.clienteRepository.findById(id)
+                .map(clientePersistido -> {
+                    clientePersistido.setNome(cliente.nome());
+                    clientePersistido.setCpf(cliente.cpf());
+                    clientePersistido.setEmail(cliente.email());
+                    clientePersistido.setEndereco(cliente.endereco());
+                    clientePersistido.setTelefone(cliente.telefone());
+                    clientePersistido.setSenha(cliente.senha());
+                    return clienteRepository.save(clientePersistido);
+                }).orElseThrow(() -> new RuntimeException("Cliente " + id + " não localizado."));
     }
 
     public ClienteListagemDTO getClientePorEmail(String email) {
